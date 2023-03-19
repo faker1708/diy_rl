@@ -25,7 +25,7 @@
 
 import random
 import torch
-
+import matplotlib.pyplot as plt
 
 class lhj ():
 
@@ -108,7 +108,7 @@ class two_arm():
     
     def main(self):
         
-        k = 12 # 老虎机的个数
+        k = 22 # 老虎机的个数
 
         jl = list()
 
@@ -128,7 +128,10 @@ class two_arm():
         pp = pc * p
 
         # 开始训练
-        tc = 303
+        tc = 2**8
+        
+        va_list = list()
+        x_index = list()
         for epoch in range(tc):
 
             ch = random.randint(0,pc-1)
@@ -155,14 +158,16 @@ class two_arm():
                 #     random_index+=1
                 mo = jl[random_index]
 
-
-            va_list = list()
+            plt.ion()
+            plt.figure(1)
             mo.pop()
             if(epoch % 2**7):
                 va = self.validate()
                 va_list.append(va)
+                x_index.append(epoch)
                 # print(va)
-                
+                plt.plot(x_index, va_list,c='deeppink',ls='-')  ## 保存历史数据
+                plt.pause(0.1)
 
 a = two_arm()
 a.main()
