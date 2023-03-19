@@ -123,7 +123,7 @@ class two_arm():
 
         tc = 2**17   # 总练习时长
 
-        pass_ratio = 0.9    # 当某个选择投票率到达多少时停止练习
+        pass_ratio = 0.5    # 当某个选择投票率到达多少时停止练习
         # pass_ratio = 0.2    # 当某个选择投票率到达多少时停止练习
 
         
@@ -213,9 +213,7 @@ class two_arm():
                         break
                     else:
                         failed = 1
-                        # break
-                        print('实际的最优解',mmi,jl[mmi].means)
-                        print('机器的回答',mti,jl[mti].means)
+                        break
 
         if(failed ==1):
             print('测试不通过，这样的及格线不合适，已强制继续练习。')

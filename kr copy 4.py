@@ -103,34 +103,16 @@ class two_arm():
         else:
             out = 0
             # print('算法未成功')
-        
-        va = out
-        vv = [va,mmi,mti]
-        return vv
+        return out
 
     
     def main(self):
 
-        show_pic = 1
-        show_pross = 0 # 展示收敛过程
+        show_pic = 0
         
-        p = 1-2**-3 # 这个概率访问最大价值的老虎机，1-p 的概率临幸其它老虎机
+        p = 0.4 # 这个概率访问最大价值的老虎机，1-p 的概率临幸其它老虎机
         
         k = 2**5 # 老虎机的个数
-
-        print('保守概率',p)
-
-
-        tc = 2**17   # 总练习时长
-
-        pass_ratio = 0.9    # 当某个选择投票率到达多少时停止练习
-        # pass_ratio = 0.2    # 当某个选择投票率到达多少时停止练习
-
-        
-        if(show_pic):
-            plt.ion()
-            plt.figure(1)
-
 
         jl = list()
 
@@ -145,19 +127,20 @@ class two_arm():
 
         op = 0
 
-        pc = 2**14
+        pc = 2**10
         pp = pc * p
 
         # 开始训练
+        tc = 2**8
         
+        plt.ion()
+        plt.figure(1)
 
         sh_p = 0    # 多久收敛？
 
 
         va_list = list()
         x_index = list()
-        va=0
-        failed = 0
         for epoch in range(tc):
 
             ch = random.randint(0,pc-1)
@@ -186,65 +169,22 @@ class two_arm():
 
             mo.pop()
             if(epoch % 2**7):
-
-                vv = self.validate()
-                va = vv[0]
-                mmi = vv[1]
-                mti = vv[2]
-                
+                va = self.validate()
                 va_list.append(va)
                 x_index.append(epoch)
                 # print(va)
-                if(show_pross):
+                if(show_pic):
                     plt.plot(x_index, va_list,c='deeppink',ls='-')  ## 保存历史数据
                     plt.pause(0.1)
-                    pass
+
                 if(va==0):
                     sh_p = epoch
 
-
-                pass_vote = jl[mti].time
-                vote_ratio = pass_vote/epoch
-                # print(vote_ratio)
-                # 这个vote_ratio，是否可以与 保守概率p 比一比？？
-
-                if(vote_ratio>pass_ratio):
-                    if(va==1):
-                        break
-                    else:
-                        failed = 1
-                        # break
-                        print('实际的最优解',mmi,jl[mmi].means)
-                        print('机器的回答',mti,jl[mti].means)
-
-        if(failed ==1):
-            print('测试不通过，这样的及格线不合适，已强制继续练习。')
-
-
-        if(va==1):
+        if(va):
             print('成功收敛')
             print('收敛半径',sh_p)
-            print('停止练习时的投票率',vote_ratio)
         else:
             print('算法失败了')
-            print('实际的最优解',mmi,jl[mmi].means)
-            print('机器的回答',mti,jl[mti].means)
-        mmi = vv[1]
-        mti = vv[2]
-            
-        print(jl[mti].time,epoch)
-
-        ess_ratio = sh_p/epoch
-        print('有效练习率',ess_ratio)
-
-        if(show_pic):
-            xz_index =list()
-            z_index = list()
-            for i,lhj_x in enumerate(jl):
-                xz_index.append(i)
-                z_index.append(lhj_x.time)
-            plt.plot(xz_index, z_index,c='blue',ls='-')  ## 保存历史数据
-        plt.pause(1000)
 
 a = two_arm()
 a.main()
