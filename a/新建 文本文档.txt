@@ -35,3 +35,12 @@ https://hrl.boyuai.com/chapter/1/%E5%88%9D%E6%8E%A2%E5%BC%BA%E5%8C%96%E5%AD%A6%E
 
 安装 opengl 下载文件
 PyOpenGL_accelerate‑3.1.6‑cp39‑cp39‑win_amd64.whl
+
+
+
+我做事太奇葩了。
+我为什么要写游戏啊。。。。
+
+
+我真的是，干事要分清主次啊。太上头了。
+

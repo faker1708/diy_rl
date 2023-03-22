@@ -33,7 +33,7 @@ class one_piece():
 
 
         
-        self.paint = 1
+        self.paint = 0
         self.debug = 1
         
 
@@ -47,8 +47,8 @@ class one_piece():
         
         self.terminate = 0
         self.score = 0
-        width = 7
-        hight = 5
+        width = 4
+        hight = 4
 
         
         self.patience = width*hight * 2
@@ -129,53 +129,6 @@ class one_piece():
             tr = target[0]
             tc = target[1]
 
-
-
-            # if(w.terminate==1):
-            #     pass
-            w.terminate = 0
-
-            if(self.hp<=0):
-                # print('loose',self.hp)
-                self.terminate = 1
-            else:
-
-                
-                # print('行，列',ar,ac)
-
-                if(action== 0):
-                        ar -=1
-
-                elif(action== 1):
-                        ar +=1
-                elif(action==2):
-                        ac -= 1
-                elif(action == 3):
-                        ac += 1
-
-                if(ar < 0 ):
-                        ar = 0
-                if(ar > self.hight-1):
-                        ar = self.hight-1
-
-                if(ac < 0):
-                        ac = self.width
-                if(ac>self.width-1):
-                        ac = self.width
-
-                self.hp -=1
-                # print('ac',ac)
-
-                
-
-                # print('行，列',ar,ac)
-
-                # agent_pos = ar * width + ac
-                agent_pos = [ar,ac]
-                self.state[1] = agent_pos
-
-
-
             
             if(self.paint == 1):
                 self.plt.x = ac
@@ -186,11 +139,56 @@ class one_piece():
                 w.terminate = 1
                 print('win')
 
+            # if(w.terminate==1):
+            #     pass
+            else:
+                w.terminate = 0
+
+                if(self.hp<=0):
+                    # print('loose',self.hp)
+                    self.terminate = 1
+                else:
+
+                    
+                    # print('行，列',ar,ac)
+
+                    if(action== 0):
+                            ar -=1
+
+                    elif(action== 1):
+                            ar +=1
+                    elif(action==2):
+                            ac -= 1
+                    elif(action == 3):
+                            ac += 1
+
+                    if(ar < 0 ):
+                         ar = 0
+                    if(ar > self.hight-1):
+                         ar = self.hight-1
+
+                    if(ac < 0):
+                         ac = self.width
+                    if(ac>self.width-1):
+                         ac = self.width
+
+                    self.hp -=1
+                    # print('ac',ac)
+
+                    
+
+                    # print('行，列',ar,ac)
+
+                    # agent_pos = ar * width + ac
+                    agent_pos = [ar,ac]
+                    self.state[1] = agent_pos
+
+
 
 
         if(self.debug):
-            print(tr,tc)
             print(ar,ac,self.hp)
+            print(tr,tc)
             print()
 
 
@@ -206,7 +204,6 @@ class one_piece():
             if(w.terminate==1):
                 print(w.hp)
                 # if(w.hp)
-                print('end')
                 break
         if(self.paint == 1):
             
