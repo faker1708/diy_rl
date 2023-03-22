@@ -63,13 +63,10 @@ class one_piece():
         # ac = tc
 
 
-        # target = tr *width + tc            
-        # agent_pos = ar * width + ac
+        target = tr *width + tc            
+        agent_pos = ar * width + ac
 
         # 输出
-
-        agent_pos = [ar,ac]
-        target = [tr,tc]
 
         self.width = width
         self.hight = hight
@@ -120,25 +117,15 @@ class one_piece():
             hight = self.hight
                     
             # 行坐标，列坐标
-            # ar = agent_pos // width
-            # ac = agent_pos % hight
-            ar = agent_pos[0]
-            ac = agent_pos[1]
+            ar = agent_pos // width
+            ac = agent_pos % hight
+            
 
-            tr = target[0]
-            tc = target[0]
-
-
-            # if(target == agent_pos):
-            #     # print('game_over')
-            #     print('win',self.hp)
-            #     self.terminate = 1
-            #     # self.score = 1
-
-            if()
-
-            if(w.terminate==1):
-                pass
+            if(target == agent_pos):
+                # print('game_over')
+                print('win',self.hp)
+                self.terminate = 1
+                # self.score = 1
             else:
 
 

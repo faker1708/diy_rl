@@ -30,12 +30,8 @@ class one_piece():
 
 
     def __init__(self):
-
-
-        
-        self.paint = 0
-        self.debug = 1
-        
+        self.agent_list = list()
+        self.paint = 1
 
         # target = random.randint(0,16-1)
         # target = 2
@@ -63,30 +59,21 @@ class one_piece():
         # ac = tc
 
 
-        # target = tr *width + tc            
-        # agent_pos = ar * width + ac
+        target = tr *width + tc            
+        agent_pos = ar * width + ac
 
-        # 输出
-
-        agent_pos = [ar,ac]
-        target = [tr,tc]
 
         self.width = width
         self.hight = hight
 
         self.state = [target,agent_pos] # 目标在0 主体在16
 
-        self.agent_list = list()
+        # 打印
+        # print('self.state',self.state)
+        print(tr,tc)
+        print(ar,ac)
 
 
-        # 调试
-        if(self.debug ==1):
-            # print('self.state',self.state)
-            print(tr,tc)
-            print(ar,ac)
-
-
-        # 显示
         if(self.paint == 1):
                 
             plt = plt_scatter.plt_scatter()
@@ -114,79 +101,68 @@ class one_piece():
             # print(agent_pos)
             
             target = self.state [0]
-            
-                
-            width = self.width
-            hight = self.hight
-                    
-            # 行坐标，列坐标
-            # ar = agent_pos // width
-            # ac = agent_pos % hight
-            ar = agent_pos[0]
-            ac = agent_pos[1]
-
-            tr = target[0]
-            tc = target[0]
-
-
-            # if(target == agent_pos):
-            #     # print('game_over')
-            #     print('win',self.hp)
-            #     self.terminate = 1
-            #     # self.score = 1
-
-            if()
-
-            if(w.terminate==1):
-                pass
+            if(target == agent_pos):
+                # print('game_over')
+                print('win',self.hp)
+                self.terminate = 1
+                # self.score = 1
             else:
 
 
                 if(self.hp<=0):
                     print('loose',self.hp)
                     self.terminate = 1
-                else:
+                
+                width = self.width
+                hight = self.hight
+                
+                # 行坐标，列坐标
+                ar = agent_pos // width
+                ac = agent_pos % hight
 
-                    
-                    # print('行，列',ar,ac)
+                
+                # print('行，列',ar,ac)
 
-                    if(action== 0):
-                        # print('上移')
-                        if (ar!=0):
-                            # print('需要移动')
-                            ar -=1
+                if(action== 0):
+                    # print('上移')
+                    if (ar!=0):
+                        # print('需要移动')
+                        ar -=1
 
-                    elif(action== 1):
-                        # print('下移')
-                        if (ar <=  self.hight-1):
-                            ar +=1
-                    elif(action==2):
-                        if(ac >= 0):
-                            ac -= 1
-                    elif(action == 3):
-                        if(ac <=self.width-1):
-                            ac += 1
+                elif(action== 1):
+                    # print('下移')
+                    if (ar <=  self.hight-1):
+                        ar +=1
+                elif(action==2):
+                    if(ac >= 0):
+                        ac -= 1
+                elif(action == 3):
+                    if(ac <=self.width-1):
+                        ac += 1
 
-                    self.hp -=1
-                    print('ac',ac)
+                self.hp -=1
 
-                    
+                
 
-                    # print('行，列',ar,ac)
+                # print('行，列',ar,ac)
 
-                    agent_pos = ar * width + ac
-                    self.state[1] = agent_pos
-
+                agent_pos = ar * width + ac
+                self.state[1] = agent_pos
 
 
-        if(self.paint == 1):
-            self.plt.x = ac
-            self.plt.y = ar
-            self.plt.paint()
+                print(ar,ac)
 
-        if(self.debug):
-            print(ar,ac)
 
+                if(self.paint == 1):
+
+                    w =self
+                    if(w.terminate==0):
+                        self.plt.x = ac
+                        self.plt.y = ar
+                        self.plt.paint()
+
+
+        
 
     def run(self):
         w = self
